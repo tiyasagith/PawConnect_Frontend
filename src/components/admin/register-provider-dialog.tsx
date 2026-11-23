@@ -323,12 +323,13 @@ export function RegisterProviderDialog({ open, onOpenChange, provider }: Registe
                   <Label htmlFor="providerType" className="text-xs font-semibold">Discipline / Provider Type *</Label>
                   <Select
                     value={form.providerType}
+                    disabled={isEdit}
                     onValueChange={(val: "GROOMER" | "TRAINER") => {
                       setForm((prev) => ({ ...prev, providerType: val }));
                       if (error) setError(null);
                     }}
                   >
-                    <SelectTrigger id="providerType" className="h-10.5 rounded-xl text-sm">
+                    <SelectTrigger id="providerType" className="h-10.5 rounded-xl text-sm disabled:opacity-75 disabled:cursor-not-allowed bg-muted/30">
                       <SelectValue placeholder="Select provider discipline" />
                     </SelectTrigger>
                     <SelectContent>
@@ -336,6 +337,11 @@ export function RegisterProviderDialog({ open, onOpenChange, provider }: Registe
                       <SelectItem value="TRAINER">Certified Dog Trainer (Behavioral & Obedience)</SelectItem>
                     </SelectContent>
                   </Select>
+                  {isEdit && (
+                    <p className="text-[11px] text-muted-foreground">
+                      Discipline / Provider type cannot be changed once created.
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-1.5">

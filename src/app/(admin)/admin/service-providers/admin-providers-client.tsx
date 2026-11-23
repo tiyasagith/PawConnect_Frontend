@@ -262,10 +262,10 @@ export function AdminProvidersClient() {
               All Providers ({providers.length})
             </TabsTrigger>
             <TabsTrigger value="grooming" className="rounded-xl text-xs px-3 shrink-0">
-              Grooming Salons
+              Grooming Salons ({providers.filter((p) => p.providerType === "grooming").length})
             </TabsTrigger>
             <TabsTrigger value="training" className="rounded-xl text-xs px-3 shrink-0">
-              Training Academies
+              Training Academies ({providers.filter((p) => p.providerType === "training").length})
             </TabsTrigger>
           </TabsList>
         </Tabs>

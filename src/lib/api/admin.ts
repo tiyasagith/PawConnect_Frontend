@@ -561,9 +561,10 @@ interface BackendServiceBookingItem {
 }
 
 function mapBackendProviderToProfile(p: BackendAdminProviderResponse): ServiceProviderProfile {
-  const pType = p.providerType ? p.providerType.toLowerCase() : "grooming";
+  const pType = (p.providerType || "").toLowerCase();
+  const isTrainer = pType.includes("train");
   const mappedProviderType: ServiceProviderProfile["providerType"] =
-    pType === "training" ? "training" : "grooming";
+    isTrainer ? "training" : "grooming";
 
   return {
     id: String(p.id),
